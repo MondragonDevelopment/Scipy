@@ -7,7 +7,7 @@ from scipy.optimize import newton
 def yf(v0):
     sol = solve_ivp(F, [x0, xf], [y0, w0, v0])
     y, w, v = sol.y
-    return y[-1] - 1
+    return w[-1] - w2
 
 
 # ----------------------- Equations to solve -----------------------
@@ -36,7 +36,7 @@ sol = solve_ivp(F, [x0, xf], [y0, w0, v0], t_eval=x_eval)  # This uses RK45 to n
 # ----------------------- Plotting -----------------------
 plt.style.use("dark_background")
 plt.figure(figsize=(10, 8))
-plt.plot(sol.t, sol.y[1], 'bo')  # sol.t returns x values, sol.y returns solution values
+plt.plot(sol.t, sol.y[0], 'bo')  # sol.t returns x values, sol.y returns solution values
 plt.plot(xf, w2, "ro")
 # plt.plot(x_eval, aSol(x_eval), 'w')
 plt.xlabel("x")
